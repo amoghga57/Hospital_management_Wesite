@@ -1,0 +1,17 @@
+package com.hospital.management.exception;
+
+import java.util.List;
+
+
+import com.hospital.management.dto.Patient;
+import com.hospital.management.dto.ResponseBody;
+
+public class NoDataFoundException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+
+}

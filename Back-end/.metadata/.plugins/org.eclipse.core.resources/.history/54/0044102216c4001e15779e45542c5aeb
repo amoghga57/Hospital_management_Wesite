@@ -1,0 +1,13 @@
+package com.hospital.management.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query; 
+org.springframework.stereotype.Repository;
+
+import com.hospital.management.dto.Patient;
+
+public interface HospitalRepository extends JpaRepository<Patient, Integer> {
+
+//	@Query("select h from Hospital h where h.name=?1 and h.adminCode=?2")
+//	public Optional<String> administarterLogin();
+}

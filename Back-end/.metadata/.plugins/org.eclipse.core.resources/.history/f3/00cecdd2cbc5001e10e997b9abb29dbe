@@ -1,0 +1,17 @@
+package com.hospital.management.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+import com.hospital.management.dto.ResponseBody;
+
+@ControllerAdvice
+public class SpringBootExceptionHandle {
+	
+	public ResponseEntity<ResponseBody<String>> NoDataFound(NoDataFoundException e){
+		ResponseBody<String> rb=new ResponseBody<String>(e.getMessage(), "", HttpStatus.ACCEPTED);
+		return new ResponseEntity<ResponseBody<String>>(rb,HttpStatus.ACCEPTED);
+	}
+	
+}

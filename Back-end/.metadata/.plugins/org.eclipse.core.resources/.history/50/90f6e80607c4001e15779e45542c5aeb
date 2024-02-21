@@ -1,0 +1,32 @@
+package com.hospital.management.dao;
+
+import java.util.Optional;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hospital.management.dto.Patience;
+import com.hospital.management.repository.HospitalRepository;
+
+public class HospitalOperation {
+	
+	@Autowired
+	private HospitalRepository repo;
+
+	public void saveData(Patience p) {
+		repo.save(p);
+	}
+
+
+	
+//	public String login(String name,int administartorId) { 
+//		Optional<String> res=repo.administarterLogin();
+//		if(res.isPresent()) {
+//			
+//		}
+//		else {
+//			
+//		}
+//		return "";		
+//	}
+}

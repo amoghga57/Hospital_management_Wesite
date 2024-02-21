@@ -1,0 +1,78 @@
+package com.hospital.management.service;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
+import com.hospital.management.dao.HospitalOperation;
+import com.hospital.management.dto.Patient;
+import com.hospital.management.dto.ResponseBody;
+import com.hospital.management.exception.NoDataFoundException;
+
+
+@Service
+public class HospitalService {
+
+	@Autowired
+	private HospitalOperation ho;
+
+	public ResponseBody<String> saveData(Patient p) {
+		if(p!=null) {
+			ho.saveData(p);
+			ResponseBody<String> rb=new ResponseBody<String>("Data Saved","Patient saved ", HttpStatus.OK);
+			return rb;
+		}
+		else {
+			ResponseBody<String> rb=new ResponseBody<String>("Data Saved","No data", HttpStatus.OK);
+			return rb;
+		}
+		
+	}
+
+	public ResponseBody<List<Patient>> getDetails() {
+		List<Patient> p=ho.getDetails();
+			ResponseBody<List<Patient>> rb=new ResponseBody<List<Patient>>("All details of patient", p, HttpStatus.OK);
+			return rb;
+	}
+
+	public ResponseBody<List<Patient>> getSingleDetails(int id) {
+			if(id>0){
+			Optional<Patient> p=ho.getSingleDetails(id);
+			if(p.isPresent()) {
+				List<Patient> patient=Arrays.asList(p.get());
+				ResponseBody<List<Patient>> rb=new ResponseBody<List<Patient>>("All details of patient", patient, HttpStatus.OK);
+				return rb;
+			}else {
+				throw new NoDataFoundException();
+			}
+		}
+		else {
+			throw new NoDataFoundException();
+		}
+		
+	}
+
+	public ResponseBody<String> deletePatient(int id) {
+		ho.deletePatient(id);
+		return new ResponseBody<String>("Delete the patinet", "The patient with id "+id+" is deleted", HttpStatus.OK);
+	}
+
+	public ResponseBody<String> editPatient(int id, Patient p) {
+		Optional<Patient> patient=ho.getSingleDetails(id);
+		Patient pat_obj=patient.get();
+		pat_obj.setPatient_name(p.getPatient_name());
+		pat_obj.setAge(p.getAge());
+		pat_obj.setCity(p.getCity());
+		pat_obj.setState(p.getState());
+		pat_obj.setAddress(p.getAddress());
+		pat_obj.setPhone(p.getPhone());
+		pat_obj.setCovid_status(p.getCovid_status());
+		return null;
+	}
+	
+
+}

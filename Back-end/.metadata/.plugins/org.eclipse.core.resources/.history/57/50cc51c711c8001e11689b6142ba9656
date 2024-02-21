@@ -1,0 +1,64 @@
+package com.hospital.management.controller;
+
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hospital.management.dto.Patient;
+import com.hospital.management.dto.ResponseBody;
+import com.hospital.management.service.HospitalService;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@SpringBootApplication
+//Class which accepts web request from the client , process the request and returns the response to the client
+public class HospitalController {
+	
+	@Autowired
+	public HospitalService hs;
+	
+	@PostMapping("/patient/save")
+	public ResponseEntity<ResponseBody<String>>  saveData(@RequestBody Patient p ){
+		return new ResponseEntity<ResponseBody<String>>(hs.saveData(p),HttpStatus.OK);
+	}
+	
+	@GetMapping("/patient/details")
+	public ResponseEntity<ResponseBody<List<Patient>>> getDetails(){
+		return new ResponseEntity<ResponseBody<List<Patient>>>(hs.getDetails(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/patient/details/{id}")
+	public ResponseEntity<ResponseBody<List<Patient>>> getSingleDetails(@PathVariable int id){
+		return new ResponseEntity<ResponseBody<List<Patient>>>(hs.getSingleDetails(id),HttpStatus.OK);
+	}
+	
+	@PutMapping("/patient/edit/{id}")
+	public ResponseEntity<ResponseBody<String>> editPatient(@PathVariable int id,@RequestBody Patient p){
+		return new ResponseEntity<ResponseBody<String>> (hs.editPatient(id,p),HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/patient/delete/{id}")
+	public ResponseEntity<ResponseBody<String>> deletePatient(@PathVariable int id){
+		return new ResponseEntity<ResponseBody<String>>(hs.deletePatient(id),HttpStatus.OK);
+	}
+	
+	@GetMapping("/patient/phone/{phone}")
+	public ResponseEntity<ResponseBody<Boolean>> verifyThePhone(@PathVariable long phone){
+		return new ResponseEntity<ResponseBody<Boolean>>(hs.verifyThePhone(phone),HttpStatus.OK);
+	}
+	
+	
+}

@@ -1,0 +1,5 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/hospital_boot_app?createDatabaseIfNotExistt=true
+spring.datasource.name=root
+spring.datasource.password=doreamonobitag57
+
+

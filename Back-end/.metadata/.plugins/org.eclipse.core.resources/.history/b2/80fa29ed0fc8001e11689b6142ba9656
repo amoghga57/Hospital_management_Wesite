@@ -1,0 +1,39 @@
+package com.hospital.management.dao;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.hospital.management.dto.Patient;
+import com.hospital.management.repository.HospitalRepository;
+
+
+@Repository
+public class HospitalOperation {
+	
+	@Autowired
+	private HospitalRepository repo;
+
+	public void saveData(Patient p) {
+		repo.save(p);
+	}
+
+	public List<Patient> getDetails() {
+		return repo.findAll();
+	}
+
+	public Optional<Patient> getSingleDetails(int id) {
+		return repo.findById(id);
+	}
+
+	public void deletePatient(int id) {
+		repo.deleteById(id);
+	}
+
+	public Optional<Boolean> verifyThePhone(long phone) {
+		return repo.verifyThePhone(phone);
+	}
+
+}
