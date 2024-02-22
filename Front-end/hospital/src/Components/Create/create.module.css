@@ -1,0 +1,124 @@
+body{
+     background-color: rgba(223, 206, 48, 0.844);
+}
+#head{
+     text-align: center;
+     margin-top: 100px;
+     font-size: 45px;
+     font-family: 'Times New Roman';
+}
+#section{
+     width: 100%;
+     height: 60vh;
+}
+#load{
+     font-size: 40px;
+     position: absolute;
+     top: 70px;
+     left: 50%;
+     display: none;
+}
+#pop{
+     width: 200px;
+     height: 40px;
+     padding: 10px 5px;
+     position: absolute;
+     right: 50px;
+     top: 90px;
+     visibility: hidden;
+     color: red;
+}
+#box{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+#form{
+     width: 43%;
+     border: 1px solid black;
+     padding: 10px 10px;
+     background-color: black;
+}
+#colum{
+     display: flex;
+}
+input::-webkit-inner-spin-button{
+     -webkit-appearance: none;
+}
+input,textarea,button{
+     margin: 10px 10px;
+     resize: none;
+     appearance: none;
+}
+input{
+     border: none;
+     border-bottom: 2px solid white;
+     color: white;
+     background-color: black;
+     outline: none;
+}
+input::placeholder,textarea::placeholder{
+     color: white;
+     opacity: 1;
+}
+textarea{
+     width: 90%;
+     background-color: black;
+     color: white;
+     outline: none;
+}
+aside>label{
+     color: white;
+     position: absolute;
+     top: 375px;
+     left: 460px;
+}
+button{
+     width: 94%;
+     color: rgb(9, 205, 205);
+     background-color: rgba(251, 10, 10, 0.799);
+     border: none;
+     border-radius: 10px;
+}
+@media screen and (max-width:1030px){
+     #colum{
+          display: flex;
+          flex-direction: column;
+     }
+     #head{
+          margin-top: 70px;
+          font-size: 38px;
+     }
+}
+@media screen and (max-width:700px){
+     #form{
+          width: 300px;
+     }
+     #head{
+          margin-top: 80px;
+          font-size: 30px;
+     }
+     #pop{
+          width: 200px;
+          height: 40px;
+          right: 10px;
+          top: 50px;
+          font-size: 14px;
+     }
+}
+@media screen and (max-width:500px){
+     #head{
+          margin-top: 90px;
+     }
+     #pop{
+          right: 100px;
+     }
+     #load{
+          top: 90px;
+     }
+}
+
+
+
+
+
